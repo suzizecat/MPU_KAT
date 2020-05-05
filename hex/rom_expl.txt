@@ -1,0 +1,17 @@
+  1 @ 000: [30 0002] Write litteral 0002 in register 0
+  2 @ 001: [31 0000] Write litteral 0000 in register 1
+  3 @ 002: [32 0003] Write litteral 0003 in register 2
+  4 @ ---: [-- ----] Define label :start for next program instruction
+  5 @ 003: [48 0002] ALU operation  sumr between registers 0 and 2
+  6 @ 004: [4A 0001] Increment register 1 through ALU.
+  7 @ 005: [4F 0001] Write ALU result to register 1 
+  8 @ 006: [43 0102] ALU operation  neqr between registers 1 and 2
+  9 @ 007: [18 XXXX] Jump conditionally to label :start
+ 10 @ 008: [32 0000] Write litteral 0000 in register 2
+ 11 @ ---: [-- ----] Define label :part2 for next program instruction
+ 12 @ 009: [4B 0001] Decrement register 1 through ALU.
+ 13 @ 00A: [4F 0001] Write ALU result to register 1 
+ 14 @ 00B: [43 0102] ALU operation  neqr between registers 1 and 2
+ 15 @ 00C: [18 XXXX] Jump conditionally to label :part2
+ 16 @ 00D: [1F 0000] Halt
+ 17 @ 00E: [00 0000] No operation

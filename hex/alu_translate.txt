@@ -1,0 +1,9 @@
+00 nop
+01 k1
+02 k2
+10 sum
+11 sub
+20 eq
+21 neq
+22 gt
+23 ngt
