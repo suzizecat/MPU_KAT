@@ -83,8 +83,10 @@ begin
         wait for 10 ns ;
         command <= "0001"&"0000";
         wait for 10 ns ;
+        command <= "0000"&"0000";
         operand1 <= "0000000000000100";
         wait for 10 ns ;
+        command <= "0001"&"0000";
         operand2 <= "0000000000000001";
         wait for 10 ns ;
         operand1 <= (others => '1' );

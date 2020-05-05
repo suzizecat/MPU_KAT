@@ -27,9 +27,14 @@
 3F	wrlF
 42	eqr
 43	neqr
+44	gtr
+45	ngtr
+46	ger
+47	nger
 48	sumr
 49	subr
 4A	incr
 4B	decr
-4F	atr
+4E	atr
+4F	atc
 00	nop

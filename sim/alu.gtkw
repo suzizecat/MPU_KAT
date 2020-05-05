@@ -1,0 +1,56 @@
+[*]
+[*] GTKWave Analyzer v3.3.101 (w)1999-2019 BSI
+[*] Tue May  5 11:22:06 2020
+[*]
+[dumpfile] "/home/julien/Projets/VHDL/MPU_KAT/sim/tb_alu.ghw"
+[dumpfile_mtime] "Tue May  5 11:20:25 2020"
+[dumpfile_size] 2151
+[savefile] "/home/julien/Projets/VHDL/MPU_KAT/sim/alu.gtkw"
+[timestart] 0
+[size] 1920 1043
+[pos] 1881 0
+*-25.000000 24100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tb_alu.
+[sst_width] 233
+[signals_width] 142
+[sst_expanded] 1
+[sst_vpaned_height] 308
+@28
+top.tb_alu.reset
+@2022
+^1 /home/julien/Projets/VHDL/MPU_KAT/hex/alu_translate.txt
+#{top.tb_alu.command[7:0]} top.tb_alu.command[7] top.tb_alu.command[6] top.tb_alu.command[5] top.tb_alu.command[4] top.tb_alu.command[3] top.tb_alu.command[2] top.tb_alu.command[1] top.tb_alu.command[0]
+@24
+#{top.tb_alu.operand1[15:0]} top.tb_alu.operand1[15] top.tb_alu.operand1[14] top.tb_alu.operand1[13] top.tb_alu.operand1[12] top.tb_alu.operand1[11] top.tb_alu.operand1[10] top.tb_alu.operand1[9] top.tb_alu.operand1[8] top.tb_alu.operand1[7] top.tb_alu.operand1[6] top.tb_alu.operand1[5] top.tb_alu.operand1[4] top.tb_alu.operand1[3] top.tb_alu.operand1[2] top.tb_alu.operand1[1] top.tb_alu.operand1[0]
+#{top.tb_alu.operand2[15:0]} top.tb_alu.operand2[15] top.tb_alu.operand2[14] top.tb_alu.operand2[13] top.tb_alu.operand2[12] top.tb_alu.operand2[11] top.tb_alu.operand2[10] top.tb_alu.operand2[9] top.tb_alu.operand2[8] top.tb_alu.operand2[7] top.tb_alu.operand2[6] top.tb_alu.operand2[5] top.tb_alu.operand2[4] top.tb_alu.operand2[3] top.tb_alu.operand2[2] top.tb_alu.operand2[1] top.tb_alu.operand2[0]
+@200
+-
+@c00024
+#{top.tb_alu.output[15:0]} top.tb_alu.output[15] top.tb_alu.output[14] top.tb_alu.output[13] top.tb_alu.output[12] top.tb_alu.output[11] top.tb_alu.output[10] top.tb_alu.output[9] top.tb_alu.output[8] top.tb_alu.output[7] top.tb_alu.output[6] top.tb_alu.output[5] top.tb_alu.output[4] top.tb_alu.output[3] top.tb_alu.output[2] top.tb_alu.output[1] top.tb_alu.output[0]
+@28
+top.tb_alu.output[15]
+top.tb_alu.output[14]
+top.tb_alu.output[13]
+top.tb_alu.output[12]
+top.tb_alu.output[11]
+top.tb_alu.output[10]
+top.tb_alu.output[9]
+top.tb_alu.output[8]
+top.tb_alu.output[7]
+top.tb_alu.output[6]
+top.tb_alu.output[5]
+top.tb_alu.output[4]
+top.tb_alu.output[3]
+top.tb_alu.output[2]
+top.tb_alu.output[1]
+top.tb_alu.output[0]
+@1401204
+-group_end
+@200
+-
+@28
+top.tb_alu.dut.bool_res
+top.tb_alu.dut.overflow
+[pattern_trace] 1
+[pattern_trace] 0

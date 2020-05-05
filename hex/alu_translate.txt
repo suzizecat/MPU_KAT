@@ -7,3 +7,5 @@
 21 neq
 22 gt
 23 ngt
+24 ge
+25 nge

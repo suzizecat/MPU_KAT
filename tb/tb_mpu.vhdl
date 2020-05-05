@@ -47,7 +47,7 @@ begin
       clkgen:process
       begin
           clk <= '0';
-          for i in 0 to 75 loop
+         loop
               clk <= '0';
               wait for 5 ns ;
 

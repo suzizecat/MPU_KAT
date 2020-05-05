@@ -1,4 +1,5 @@
 GHDL_FLAGS= --std=08 --workdir=work
+GTKW_FLAGS= --saveonexit
 
 .PONY: run_tb_counter cleanwd
 
@@ -18,7 +19,7 @@ sim/tb_counter.ghw : work/tb_counter
 	work/tb_counter --wave=sim/tb_counter.ghw
 
 run_tb_counter: sim/tb_counter.ghw
-	gtkwave sim/tb_counter.ghw
+	gtkwave $(GTKW_FLAGS) sim/tb_counter.ghw
 
 
 hex/rom.hex hex/rom_expl.txt hex/rom_translate.txt : hex/rom.s
@@ -59,7 +60,7 @@ sim/tb_alu.ghw : work/tb_alu
 	cat sim/tb_alu.ghw > /dev/null
 
 run_tb_alu: sim/tb_alu.ghw
-	gtkwave sim/tb_alu.ghw
+	gtkwave $(GTKW_FLAGS) sim/tb_alu.ghw sim/alu.gtkw
 
 
 
@@ -76,7 +77,7 @@ sim/tb_mpu.ghw : work/tb_mpu
 	@cat sim/tb_mpu.ghw > /dev/null 2> /dev/null
 
 run_tb_mpu: sim/tb_mpu.ghw
-	gtkwave sim/tb_mpu.ghw sim/mpu.gtkw
+	gtkwave $(GTKW_FLAGS) sim/tb_mpu.ghw sim/mpu.gtkw
 
 
 

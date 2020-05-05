@@ -31,29 +31,25 @@ begin
     inter_operand1 <= '0' & operand1;
     inter_operand2 <= '0' & operand2;
   
-    compute:process (command, reset)
+    compute:process (command,inter_operand1,inter_operand2, reset)
        -- variable internal : unsigned(DATA_SIZE downto 0);
     begin
         if reset = '0' then
-            output <= (others => '0') ;
             overflow <= '0';
             negative_flag <= '0';
             internal <= (others => '0') ;
             bool_res <= '0';
         elsif command /= "00000000" then
-                
-                output <= (others => '0') ;
                 overflow <= '0';
                 negative_flag <= '0';
                 internal <= (others => '0') ;
-                
+
                 case command is 
                     when "0000"&"0001" => -- keep op1
-                        output <= operand1;
+                        internal <= unsigned(inter_operand1);
                     when "0000"&"0010" => -- keep op2
-                        output <= operand2;
+                        internal <= unsigned(inter_operand2);
                     when "0001"&"0000" =>   -- add op1 op2
-                        report "SUM Action !";
                         internal <= unsigned(inter_operand1) + unsigned(inter_operand2);
                         overflow <= internal(DATA_SIZE);
                     when "0001"&"0001" =>   -- sub op1 op2
@@ -63,6 +59,8 @@ begin
                         bool_res <=  not command(0) when inter_operand1 = inter_operand2 else command(0);
                     when "0010"&"0010" | "0010"&"0011"=>    -- [n]gt op1 op2
                         bool_res <=  not command(0) when inter_operand1 > inter_operand2 else command(0);
+                    when "0010"&"0100" | "0010"&"0101"=>    -- [n]ge op1 op2
+                        bool_res <=  not command(0) when inter_operand1 >= inter_operand2 else command(0);
                     when others => 
                         null;
                 end case;

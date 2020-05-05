@@ -106,7 +106,7 @@ architecture behav of mpu is
 
     signal w_cache_addr  : unsigned(ADDR_DATA_SIZE-1 downto 0);
     signal rw_cache_data : std_logic_vector(ADDR_DATA_SIZE-1 downto 0);
-    signal cache_rw      : std_logic;
+    signal w_cache_rw      : std_logic;
 
     signal r_instruction : std_logic_vector(ADDR_WORD_SIZE-1 downto 0);
     signal r_instruction_cmd : std_logic_vector(ADDR_CMD_SIZE-1 downto 0);
@@ -176,7 +176,7 @@ begin
         reset => reset,
         addr => to_integer(w_cache_addr),
         data => rw_cache_data,
-        rw => cache_rw,
+        rw => w_cache_rw,
         cs => '1'
       );
 
@@ -201,19 +201,31 @@ begin
       variable skip_cycles : natural := 0;
     begin
       if reset = '0' then
-        query_bus <= (others => '0');
-        rw_cache_data <= (others => 'Z');
-        cache_rw <= '0';
-        skip_cycles := 0;
+        query_bus             <= (others => '0');
+        rw_cache_data         <= (others => 'Z');
+        w_cache_addr          <= (others => '0');
+        w_instruction_pointer <= (others => '0') ;
+        w_alu_cmd             <= (others => '0') ;
+        w_alu_op1             <= (others => '0') ;
+        w_alu_op2             <= (others => '0') ;
+
         registers <=  (others => (others => '0') );
-        halt <= '0';
-        w_cache_addr <= (others => '0');
+
+        w_skip_instruction        <= '0';
+        w_cache_rw                <= '0';
+        force_instruction_pointer <= '0';
+
+        halt        <= '0';
+        skip_cycles :=  0;
+
+        
+        
         
       elsif rising_edge(clk) then
         force_instruction_pointer <= '0';
         --pause_instruction_pointer <= '0';
         rw_cache_data <= (others => 'Z');
-        cache_rw <= '0';
+        w_cache_rw <= '0';
         w_alu_cmd <= (others => '0');
         w_alu_op1 <= (others => '0');
         w_alu_op2 <= (others => '0');
@@ -260,12 +272,12 @@ begin
                 when "0000" => -- setcache addr
                   w_cache_addr <= unsigned(r_instruction_data);
                 when "0001" => -- writecache litteral
-                  cache_rw <= '1';
+                  w_cache_rw <= '1';
                   skip_cycles := 1;
                   rw_cache_data <= r_instruction_data;
                   --pause_instruction_pointer <= '1';
                 when "0010" => -- writecache reg
-                  cache_rw <= '1';
+                  w_cache_rw <= '1';
                   rw_cache_data <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
                 when "0011" => -- cache to reg
                   registers(to_integer(unsigned(r_instruction_data(3 downto  0)))) <= rw_cache_data;
@@ -284,33 +296,38 @@ begin
                   w_alu_cmd <= "0010000" & r_instruction_cmd(0);
                   w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(11 downto  8))));
                   w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
-                  skip_cycles := 1;
+                when "0100" | "0101" => --[n]gt reg reg
+                  w_alu_cmd <=  "0010"&"001" & r_instruction_cmd(0);
+                  w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(11 downto  8))));
+                  w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
+                when "0110" | "0111" => --[n]ge reg reg
+                  w_alu_cmd <=  "0010"&"010" & r_instruction_cmd(0);
+                  w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(11 downto  8))));
+                  w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
                 when "1000" => -- sum reg reg
                   w_alu_cmd <= "00010000";
                   w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(11 downto  8))));
                   w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
-                  skip_cycles := 1;
                 when "1001" => -- sub reg reg
                   w_alu_cmd <= "00010001";
                   w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(11 downto  8))));
                   w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
-                  skip_cycles := 1;
                 when "1010" => -- incr reg
                   w_alu_cmd <= "00010000";
                   w_alu_op1(ADDR_DATA_SIZE - 1 downto 1) <= (others => '0') ;
                   w_alu_op1(0) <= '1';
                   w_alu_op2 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
-                  skip_cycles := 1;
                 when "1011" => -- decr reg
                   w_alu_cmd <= "00010001";
                   w_alu_op1 <= registers(to_integer(unsigned(r_instruction_data(3 downto  0))));
                   w_alu_op2(ADDR_DATA_SIZE - 1 downto 1) <= (others => '0') ;
                   w_alu_op2(0) <= '1';
-                  
-                  skip_cycles := 1;
-                when "1111" => -- alu to reg
+                when "1110" => -- alu to reg
                   registers(to_integer(unsigned(r_instruction_data(3 downto  0)))) <= r_alu_res;
-                  --skip_cycles := 1;
+                when "1111" => -- alu to cache
+                  w_cache_rw <= '1';
+                  skip_cycles := 1;
+                  rw_cache_data <= r_alu_res;
                 when others =>
                   null;
               end case;
