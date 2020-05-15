@@ -7,12 +7,16 @@ wrl $TOT 0
 wrl $CNT 0
 wrl $LIM 2
 wrl $MTO 3
+sca 0
 :mstart
     :start
+        ctr $LIM
+        incr $LIM
+        atc
         wrl $LIM 2
         incr $CNT
         atr  $CNT
-        nger $CNT $LIM
+        ngtr $CNT $LIM
     cjmpl :start
     wrl $LIM 0
     :part2

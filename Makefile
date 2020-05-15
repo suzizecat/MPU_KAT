@@ -1,12 +1,13 @@
 GHDL_FLAGS= --std=08 --workdir=work
 GTKW_FLAGS= --saveonexit
-
-.PONY: run_tb_counter cleanwd
+KATASM_PATH=~/Projets/VHDL/tools/katasm
+.PONY: run_tb_counter hex/rom.hex cleanwd
 
 cleanwd : 
 	rm -f work/*
 	rm -f *.o
 	rm -f sim/*.ghw
+	rm -f hex/*.hex
 
 work/counter.o : rtl/counter.vhdl
 	ghdl -a $(GHDL_FLAGS) rtl/counter.vhdl
@@ -22,12 +23,15 @@ run_tb_counter: sim/tb_counter.ghw
 	gtkwave $(GTKW_FLAGS) sim/tb_counter.ghw
 
 
-hex/rom.hex hex/rom_expl.txt hex/rom_translate.txt : hex/rom.s
-	python3 ~/Projets/VHDL/tools/katasm/katasm.py hex/rom.s hex/rom.hex --fill-instr 256 -e hex/rom_expl.txt -t hex/rom_translate.txt
+hex/rom.hex hex/rom_expl.txt hex/rom_translate.txt hex/rom.coe: hex/rom.s
+	python3 $(KATASM_PATH)/katasm.py hex/rom.s hex/rom.hex --fill-instr 256 -e hex/rom_expl.txt -t hex/rom_translate.txt --coe hex/rom.coe
+
 
 
 work/rom.o : rtl/rom.vhdl hex/rom.hex hex/rom_expl.txt hex/rom_translate.txt
 	ghdl -a $(GHDL_FLAGS) rtl/rom.vhdl
+work/rom_wrapper.o : work/rom.o rtl/rom_wrapper.vhdl
+	ghdl -a $(GHDL_FLAGS) rtl/rom_wrapper.vhdl
 work/tb_rom.o : tb/tb_rom.vhdl work/rom.o
 	ghdl -a $(GHDL_FLAGS) tb/tb_rom.vhdl
 work/tb_rom : work/tb_rom.o
@@ -64,7 +68,7 @@ run_tb_alu: sim/tb_alu.ghw
 
 
 
-work/mpu.o : rtl/mpu.vhdl work/rom.o work/counter.o work/ram.o work/alu.o
+work/mpu.o : rtl/mpu.vhdl work/rom_wrapper.o work/counter.o work/ram.o work/alu.o
 	ghdl -a $(GHDL_FLAGS) rtl/mpu.vhdl
 work/tb_mpu.o : tb/tb_mpu.vhdl work/mpu.o
 	ghdl -a $(GHDL_FLAGS) tb/tb_mpu.vhdl

@@ -1,15 +1,15 @@
 [*]
-[*] GTKWave Analyzer v3.3.101 (w)1999-2019 BSI
-[*] Tue May  5 13:20:48 2020
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Fri May 15 00:39:47 2020
 [*]
 [dumpfile] "/home/julien/Projets/VHDL/MPU_KAT/sim/tb_mpu.ghw"
-[dumpfile_mtime] "Tue May  5 13:13:58 2020"
-[dumpfile_size] 25160
+[dumpfile_mtime] "Fri May 15 00:18:21 2020"
+[dumpfile_size] 36194
 [savefile] "/home/julien/Projets/VHDL/MPU_KAT/sim/mpu.gtkw"
 [timestart] 0
 [size] 1920 1016
-[pos] -1921 26
-*-25.286562 85000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-25.286562 100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.tb_mpu.
 [treeopen] top.tb_mpu.dut.
@@ -19,7 +19,7 @@
 [sst_width] 299
 [signals_width] 278
 [sst_expanded] 1
-[sst_vpaned_height] 629
+[sst_vpaned_height] 671
 @28
 top.tb_mpu.dut.reset
 top.tb_mpu.dut.clk
@@ -84,7 +84,7 @@ top.tb_mpu.dut.pause_instruction_pointer
 top.tb_mpu.dut.w_skip_instruction
 @200
 -CACHE CTRL
-@c00023
+@c00022
 #{top.tb_mpu.dut.w_cache_addr[15:0]} top.tb_mpu.dut.w_cache_addr[15] top.tb_mpu.dut.w_cache_addr[14] top.tb_mpu.dut.w_cache_addr[13] top.tb_mpu.dut.w_cache_addr[12] top.tb_mpu.dut.w_cache_addr[11] top.tb_mpu.dut.w_cache_addr[10] top.tb_mpu.dut.w_cache_addr[9] top.tb_mpu.dut.w_cache_addr[8] top.tb_mpu.dut.w_cache_addr[7] top.tb_mpu.dut.w_cache_addr[6] top.tb_mpu.dut.w_cache_addr[5] top.tb_mpu.dut.w_cache_addr[4] top.tb_mpu.dut.w_cache_addr[3] top.tb_mpu.dut.w_cache_addr[2] top.tb_mpu.dut.w_cache_addr[1] top.tb_mpu.dut.w_cache_addr[0]
 @28
 top.tb_mpu.dut.w_cache_addr[15]
@@ -103,7 +103,7 @@ top.tb_mpu.dut.w_cache_addr[3]
 top.tb_mpu.dut.w_cache_addr[2]
 top.tb_mpu.dut.w_cache_addr[1]
 top.tb_mpu.dut.w_cache_addr[0]
-@1401201
+@1401200
 -group_end
 @22
 #{top.tb_mpu.dut.rw_cache_data[15:0]} top.tb_mpu.dut.rw_cache_data[15] top.tb_mpu.dut.rw_cache_data[14] top.tb_mpu.dut.rw_cache_data[13] top.tb_mpu.dut.rw_cache_data[12] top.tb_mpu.dut.rw_cache_data[11] top.tb_mpu.dut.rw_cache_data[10] top.tb_mpu.dut.rw_cache_data[9] top.tb_mpu.dut.rw_cache_data[8] top.tb_mpu.dut.rw_cache_data[7] top.tb_mpu.dut.rw_cache_data[6] top.tb_mpu.dut.rw_cache_data[5] top.tb_mpu.dut.rw_cache_data[4] top.tb_mpu.dut.rw_cache_data[3] top.tb_mpu.dut.rw_cache_data[2] top.tb_mpu.dut.rw_cache_data[1] top.tb_mpu.dut.rw_cache_data[0]

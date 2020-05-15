@@ -2,3 +2,5 @@ work/*
 *.hex
 *.o
 *.ghw
+*.coe
+rom/*.txt

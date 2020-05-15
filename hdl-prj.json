@@ -11,12 +11,15 @@
         { "file": "tb/tb_counter.vhdl", "language":"vhdl"},
         
         { "file": "rtl/rom.vhdl", "language":"vhdl"},
+        { "file": "rtl/rom_wrapper.vhdl", "language":"vhdl"},
         { "file": "tb/tb_rom.vhdl", "language":"vhdl"},
 
         { "file": "rtl/ram.vhdl", "language":"vhdl"},
 
         { "file": "rtl/alu.vhdl", "language":"vhdl"},
         { "file": "tb/tb_alu.vhdl", "language":"vhdl"},
+
+        { "file": "rtl/fifo.vhdl", "language":"vhdl"},
 
         { "file": "rtl/mpu.vhdl", "language":"vhdl"},
         { "file": "tb/tb_mpu.vhdl", "language":"vhdl"}

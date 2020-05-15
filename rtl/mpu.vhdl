@@ -38,7 +38,7 @@ architecture behav of mpu is
         );
     end component;
 
-    component rom is
+    component rom_wrapper is
         generic (
           LENGTH : natural := natural'high;
           BYTE_WIDTH  : natural := 32;
@@ -153,7 +153,7 @@ begin
       );
 
     -- The ROM memory store full instructions (CMD + DATA)
-    instruction_rom: entity work.rom
+    instruction_rom: entity work.rom_wrapper
       generic map (
         length => INST_QTY,
         byte_width => ADDR_WORD_SIZE/8,
@@ -200,8 +200,12 @@ begin
     cpu:process (clk, reset)
       variable skip_cycles : natural := 0;
     begin
+      -- Not yet actually used
+      out_cmd               <= (others => '0');
+      out_data              <= (others => '0');
+
       if reset = '0' then
-        query_bus             <= (others => '0');
+     
         rw_cache_data         <= (others => 'Z');
         w_cache_addr          <= (others => '0');
         w_instruction_pointer <= (others => '0') ;

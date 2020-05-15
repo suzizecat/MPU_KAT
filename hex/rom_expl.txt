@@ -7,24 +7,28 @@
   7 @ 002: [31 0000] Write litteral 0000 in register 1
   8 @ 003: [32 0002] Write litteral 0002 in register 2
   9 @ 004: [33 0003] Write litteral 0003 in register 3
- 10 @ ---: [-- ----] Define label :mstart for next program instruction
- 11 @ ---: [-- ----] Define label :start for next program instruction
- 12 @ 005: [32 0002] Write litteral 0002 in register 2
- 13 @ 006: [4A 0001] Increment register 1 through ALU.
- 14 @ 007: [4E 0001] Write ALU result to register 1 
- 15 @ 008: [47 0102] ALU operation  nger between registers 1 and 2
- 16 @ 009: [18 XXXX] Jump conditionally to label :start
- 17 @ 00A: [32 0000] Write litteral 0000 in register 2
- 18 @ ---: [-- ----] Define label :part2 for next program instruction
- 19 @ 00B: [4B 0001] Decrement register 1 through ALU.
- 20 @ 00C: [4E 0001] Write ALU result to register 1 
- 21 @ 00D: [44 0102] ALU operation  gtr between registers 1 and 2
- 22 @ 00E: [18 XXXX] Jump conditionally to label :part2
- 23 @ 00F: [4A 0000] Increment register 0 through ALU.
- 24 @ 010: [4E 0000] Write ALU result to register 0 
- 25 @ 011: [46 0003] ALU operation  ger between registers 0 and 3
- 26 @ 012: [18 XXXX] Jump conditionally to label :end
- 27 @ 013: [10 XXXX] Jump  to label :mstart
- 28 @ ---: [-- ----] Define label :end for next program instruction
- 29 @ 014: [1F 0000] Halt
- 30 @ 015: [00 0000] No operation
+ 10 @ 005: [20 0000] Set cache address to litteral 0000 
+ 11 @ ---: [-- ----] Define label :mstart for next program instruction
+ 12 @ ---: [-- ----] Define label :start for next program instruction
+ 13 @ 006: [23 0002] Write cache to register using register 0002
+ 14 @ 007: [4A 0002] Increment register 2 through ALU.
+ 15 @ 008: [4F 0000] ALU to cache
+ 16 @ 009: [32 0002] Write litteral 0002 in register 2
+ 17 @ 00A: [4A 0001] Increment register 1 through ALU.
+ 18 @ 00B: [4E 0001] Write ALU result to register 1 
+ 19 @ 00C: [45 0102] ALU operation ngtr between registers 1 and 2
+ 20 @ 00D: [18 XXXX] Jump conditionally to label :start
+ 21 @ 00E: [32 0000] Write litteral 0000 in register 2
+ 22 @ ---: [-- ----] Define label :part2 for next program instruction
+ 23 @ 00F: [4B 0001] Decrement register 1 through ALU.
+ 24 @ 010: [4E 0001] Write ALU result to register 1 
+ 25 @ 011: [44 0102] ALU operation gtr between registers 1 and 2
+ 26 @ 012: [18 XXXX] Jump conditionally to label :part2
+ 27 @ 013: [4A 0000] Increment register 0 through ALU.
+ 28 @ 014: [4E 0000] Write ALU result to register 0 
+ 29 @ 015: [46 0003] ALU operation ger between registers 0 and 3
+ 30 @ 016: [18 XXXX] Jump conditionally to label :end
+ 31 @ 017: [10 XXXX] Jump  to label :mstart
+ 32 @ ---: [-- ----] Define label :end for next program instruction
+ 33 @ 018: [1F 0000] Halt
+ 34 @ 019: [00 0000] No operation

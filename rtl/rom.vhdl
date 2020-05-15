@@ -16,7 +16,6 @@ entity rom is
         clk   : in std_logic;
         
         addr : in natural range 0 to LENGTH;
-        lock : in std_logic;
         data : out std_logic_vector(BYTE_WIDTH*8 -1 downto 0 ) := (others => '0')
     );
 end entity;
@@ -54,9 +53,7 @@ begin
     process (clk)
     begin
         if rising_edge(clk) then
-            if lock = '0' then
-                data <= content(addr);
-            end if;
+            data <= content(addr);
         end if;
     end process;
 
